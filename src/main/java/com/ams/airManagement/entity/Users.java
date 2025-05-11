@@ -42,6 +42,7 @@ public class Users implements UserDetails {
         return List.of(new SimpleGrantedAuthority(role));
     }
 
+
     @Override
     public String getPassword() {
         return "";

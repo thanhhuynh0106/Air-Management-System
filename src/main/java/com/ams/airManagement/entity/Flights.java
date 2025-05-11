@@ -24,10 +24,10 @@ public class Flights {
     @Column(name = "symbol", length = 6)
     private String symbol;
 
-    @Column(name = "takeoff_time", length = 19)
+    @Column(name = "takeoff_time", length = 25)
     private String takeoffTime;
 
-    @Column(name = "landing_time", length = 19)
+    @Column(name = "landing_time", length = 25)
     private String landingTime;
 
     @Column(name = "original_price", precision = 8, scale = 1)
@@ -39,17 +39,11 @@ public class Flights {
     @Column(name = "total_price", precision = 8, scale = 1)
     private Double totalPrice;
 
-    @Column(name = "departure_point", length = 9)
-    private String departurePoint;
+    @Column(name = "departure_province_id")
+    private String departureProvinceID;
 
-    @Column(name = "departure_airport", length = 19)
-    private String departureAirport;
-
-    @Column(name = "destination", length = 9)
-    private String destination;
-
-    @Column(name = "landing_airport", length = 19)
-    private String landingAirport;
+    @Column(name = "destination_province_id")
+    private String destinationProvinceID;
 
     @Column(name = "seat_class", length = 31)
     private String seatClass;
