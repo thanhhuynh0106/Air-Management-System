@@ -1,9 +1,6 @@
 package com.ams.airManagement.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
@@ -30,21 +27,22 @@ public class Flights {
     @Column(name = "landing_time", length = 25)
     private String landingTime;
 
-    @Column(name = "original_price", precision = 8, scale = 1)
+    @Column(name = "original_price")
     private Double originalPrice;
 
-    @Column(name = "tax", precision = 8, scale = 1)
+    @Column(name = "tax")
     private Double tax;
 
-    @Column(name = "total_price", precision = 8, scale = 1)
+    @Column(name = "total_price")
     private Double totalPrice;
 
-    @Column(name = "departure_province_id")
-    private String departureProvinceID;
+    @ManyToOne
+    @JoinColumn(name = "departure_province_id", referencedColumnName = "province_id", nullable = false)
+    private Provinces departureProvince;
 
-    @Column(name = "destination_province_id")
-    private String destinationProvinceID;
-
+    @ManyToOne
+    @JoinColumn(name = "destination_province_id", referencedColumnName = "province_id", nullable = false)
+    private Provinces destinationProvince;
     @Column(name = "seat_class", length = 31)
     private String seatClass;
 }
