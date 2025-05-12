@@ -2,9 +2,7 @@ package com.ams.airManagement.utils;
 
 
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.Jwts;
-import org.apache.catalina.webresources.JarWarResource;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +14,12 @@ import java.util.Date;
 import java.util.function.Function;
 
 @Service
-public class JWTServices {
+public class JWTUtils {
 
     private static final long EXPIRATION_TIME = 86400000; // 1 day
     private final SecretKey secretKey;
 
-    public JWTServices() {
+    public JWTUtils() {
         String secretString = "d5e3750ad1e45ee16b1266877ee25a728a24234d3766ac8aed9a0ebd05d8999c";
         byte[] keyBytes = Base64.getDecoder().decode(secretString.getBytes(StandardCharsets.UTF_8));
         this.secretKey = new SecretKeySpec(keyBytes, "HmacSHA256");
@@ -29,7 +27,7 @@ public class JWTServices {
 
     public String generateToken(UserDetails userDetails) {
         return Jwts.builder()
-                .subject(userDetails.getUsername())
+                .subject(userDetails.getUsername()) // email
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(secretKey)
