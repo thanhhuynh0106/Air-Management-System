@@ -43,6 +43,7 @@ public class Flights {
     @ManyToOne
     @JoinColumn(name = "destination_province_id", referencedColumnName = "province_id", nullable = false)
     private Provinces destinationProvince;
+
     @Column(name = "seat_class", length = 31)
     private String seatClass;
 }
