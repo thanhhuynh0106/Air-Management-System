@@ -1,9 +1,13 @@
 package com.ams.airManagement.dto;
 
+import com.ams.airManagement.entity.Bookings;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -18,10 +22,11 @@ public class FlightsDTO {
     private Double originalPrice;
     private Double tax;
     private Double totalPrice;
-    private String departurePoint;
-    private String departureAirport;
-    private String destination;
-    private String landingAirport;
+
+    private String departureProvinceId;
+    private String destinationProvinceId;
+
     private String seatClass;
 
+    private List<BookingsDTO> bookings = new ArrayList<>();
 }

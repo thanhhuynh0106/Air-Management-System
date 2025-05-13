@@ -14,8 +14,8 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UsersDTO {
 
-    private int userID;
-    private String userName;
+    private int userId;
+    private String username;
     private String email;
     private String role;
     private List<BookingsDTO> bookings = new ArrayList<>();

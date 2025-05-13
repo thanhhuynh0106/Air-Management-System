@@ -3,6 +3,9 @@ package com.ams.airManagement.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "flights")
@@ -46,4 +49,7 @@ public class Flights {
 
     @Column(name = "seat_class", length = 31)
     private String seatClass;
+
+    @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Bookings> bookings = new ArrayList<>();
 }
