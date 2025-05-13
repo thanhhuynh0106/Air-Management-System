@@ -9,6 +9,7 @@ import com.ams.airManagement.entity.Flights;
 import com.ams.airManagement.entity.Provinces;
 import com.ams.airManagement.entity.Users;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Utils {
@@ -88,7 +89,17 @@ public class Utils {
         return bookingsDTO;
     }
 
+    public static List<UsersDTO> mapUserListEntityToUserListDTO(List<Users> userList) {
+        return userList.stream().map(Utils::mapUserEntityToUserDTO).collect(Collectors.toList());
+    }
 
+    public static List<FlightsDTO> mapFlightListEntityToFlightListDTO(List<Flights> roomList) {
+        return roomList.stream().map(Utils::mapFlightEntityToFlightDTO).collect(Collectors.toList());
+    }
+
+    public static List<BookingsDTO> mapBookingListEntityToBookingListDTO(List<Bookings> bookingList) {
+        return bookingList.stream().map(Utils::mapBookingEntityToBookingDTO).collect(Collectors.toList());
+    }
 }
 
 
