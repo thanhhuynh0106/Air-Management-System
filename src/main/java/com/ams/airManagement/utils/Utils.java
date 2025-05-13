@@ -93,8 +93,8 @@ public class Utils {
         return userList.stream().map(Utils::mapUserEntityToUserDTO).collect(Collectors.toList());
     }
 
-    public static List<FlightsDTO> mapFlightListEntityToFlightListDTO(List<Flights> roomList) {
-        return roomList.stream().map(Utils::mapFlightEntityToFlightDTO).collect(Collectors.toList());
+    public static List<FlightsDTO> mapFlightListEntityToFlightListDTO(List<Flights> flightList) {
+        return flightList.stream().map(Utils::mapFlightEntityToFlightDTO).collect(Collectors.toList());
     }
 
     public static List<BookingsDTO> mapBookingListEntityToBookingListDTO(List<Bookings> bookingList) {
