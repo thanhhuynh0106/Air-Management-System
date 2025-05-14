@@ -22,6 +22,17 @@ public class Utils {
         usersDTO.setEmail(users.getEmail());
         usersDTO.setRole(users.getRole());
 
+        return usersDTO;
+    }
+
+    public static UsersDTO mapUserEntityToUserDTOAndBooking(Users users) {
+        UsersDTO usersDTO = new UsersDTO();
+
+        usersDTO.setUserId(users.getUserId());
+        usersDTO.setUsername(users.getUsername());
+        usersDTO.setEmail(users.getEmail());
+        usersDTO.setRole(users.getRole());
+
         if (users.getBookings() != null) {
             usersDTO.setBookings(users.getBookings().stream()
                     .map(Utils::mapBookingEntityToBookingDTO)

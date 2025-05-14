@@ -8,7 +8,7 @@ import com.ams.airManagement.entity.Users;
 
 public interface UserServiceInterface {
 
-    ResponseDTO register(Users loginRequest);
+    ResponseDTO register(Users users);
     ResponseDTO login(LoginRequestDTO loginRequest);
     ResponseDTO getAllUsers();
     ResponseDTO getUserById(Integer userId);
