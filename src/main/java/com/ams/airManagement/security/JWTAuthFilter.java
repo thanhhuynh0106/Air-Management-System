@@ -3,6 +3,8 @@ package com.ams.airManagement.security;
 
 import com.ams.airManagement.service.CustomUDS;
 import com.ams.airManagement.utils.JWTUtils;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,6 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.CachingUserDetailsService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,6 +22,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.List;
 
 @Component
 public class JWTAuthFilter extends OncePerRequestFilter {
@@ -46,13 +50,19 @@ public class JWTAuthFilter extends OncePerRequestFilter {
             UserDetails userDetails = customUDS.loadUserByUsername(userEmail);
 
             if (jwtUtils.isValidToken(jwtToken, userDetails)) {
+                String role = jwtUtils.extractRole(jwtToken);
+                SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role);
+
+                UsernamePasswordAuthenticationToken authToken =
+                        new UsernamePasswordAuthenticationToken(userDetails, null, List.of(authority));
+                authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+
                 SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
-                UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                token.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                securityContext.setAuthentication(token);
+                securityContext.setAuthentication(authToken);
                 SecurityContextHolder.setContext(securityContext);
             }
         }
+
         filterChain.doFilter(request, response);
     }
 }

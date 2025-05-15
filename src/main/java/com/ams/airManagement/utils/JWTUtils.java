@@ -26,13 +26,20 @@ public class JWTUtils {
     }
 
     public String generateToken(UserDetails userDetails) {
+        String role = userDetails.getAuthorities().iterator().next().getAuthority();
         return Jwts.builder()
                 .subject(userDetails.getUsername()) // email
+                .claim("role", role)
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(secretKey)
                 .compact();
     }
+
+    public String extractRole(String token) {
+        return extractClaims(token, claims -> claims.get("role", String.class));
+    }
+
 
     public String extractUsername(String token) {
         return extractClaims(token, Claims::getSubject);

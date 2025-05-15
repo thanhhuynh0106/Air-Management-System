@@ -17,21 +17,22 @@ import java.util.List;
 public class Users implements UserDetails {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Integer userId;
 
-    @Column(name = "username", length = 20)
+    @Column(name = "username")
     private String username;
 
     @NotBlank(message = "Email is required")
-    @Column(name = "email", length = 50, unique = true)
+    @Column(name = "email", unique = true)
     private String email;
 
     @NotBlank(message = "Password is required")
-    @Column(name = "password", length = 20)
+    @Column(name = "password")
     private String password;
 
-    @Column(name = "role", length = 5)
+    @Column(name = "role")
     private String role;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
