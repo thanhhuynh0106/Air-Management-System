@@ -10,6 +10,7 @@ import lombok.Data;
 public class Bookings {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "booking_id")
     private int bookingId;
 
@@ -23,4 +24,10 @@ public class Bookings {
 
     @Column(name = "ticket_quantity")
     private Integer ticketQuantity;
+
+    @Column(name = "booking_status")
+    private String status = "UNPAID";
+
+    @OneToOne(mappedBy = "bookings", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Payment payment;
 }
