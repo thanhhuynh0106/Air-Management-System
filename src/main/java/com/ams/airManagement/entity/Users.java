@@ -35,6 +35,15 @@ public class Users implements UserDetails {
     @Column(name = "role")
     private String role;
 
+    @Column(name = "address")
+    private String address;
+
+    @Column(name = "user_status")
+    private String status;
+
+    @Column(name = "phone_number")
+    private String phone;
+
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Bookings> bookings = new ArrayList<>();
 
