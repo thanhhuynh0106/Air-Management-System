@@ -19,6 +19,8 @@ public class FlightsDTO {
     private String symbol;
     private String takeoffTime;
     private String landingTime;
+    private String takeoffDate;
+    private String landingDate;
     private Double originalPrice;
     private Double tax;
     private Double totalPrice;

@@ -24,10 +24,10 @@ public class Flights {
     @Column(name = "symbol", length = 6)
     private String symbol;
 
-    @Column(name = "takeoff_time", length = 25)
+    @Column(name = "takeofftime")
     private String takeoffTime;
 
-    @Column(name = "landing_time", length = 25)
+    @Column(name = "landingtime")
     private String landingTime;
 
     @Column(name = "original_price")
@@ -38,6 +38,13 @@ public class Flights {
 
     @Column(name = "total_price")
     private Double totalPrice;
+
+    @Column(name = "takeoffdate")
+    private String takeoffDate;
+
+    @Column(name = "landingdate")
+    private String landingDate;
+
 
     @ManyToOne
     @JoinColumn(name = "departure_province_id", referencedColumnName = "province_id", nullable = false)
@@ -52,4 +59,6 @@ public class Flights {
 
     @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Bookings> bookings = new ArrayList<>();
+
+
 }

@@ -24,4 +24,10 @@ public class Provinces {
 
     @OneToMany(mappedBy = "province", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Locations> tourLocations = new ArrayList<>();
+
+    @OneToMany(mappedBy = "departureProvince", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Flights> departures = new ArrayList<>();
+
+    @OneToMany(mappedBy = "destinationProvince", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Flights> arrivals = new ArrayList<>();
 }
