@@ -64,7 +64,6 @@ public class ChatServiceImpl implements ChatServiceInterface {
                 String dateStr = null;
                 String timeStr = null;
 
-                // Extract date and time if available
                 for (int i = 3; i < parts.length; i++) {
                     String part = parts[i].trim();
                     if (part.matches(".*\\d{1,2}/\\d{1,2}/\\d{4}.*")) {

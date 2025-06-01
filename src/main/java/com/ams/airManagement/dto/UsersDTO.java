@@ -21,6 +21,7 @@ public class UsersDTO {
     private String status;
     private String phone;
     private String address;
+    private String password;
     private List<BookingsDTO> bookings = new ArrayList<>();
 
 }

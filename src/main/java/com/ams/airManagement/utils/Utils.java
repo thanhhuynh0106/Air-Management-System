@@ -21,6 +21,9 @@ public class Utils {
         usersDTO.setUsername(users.getUsername());
         usersDTO.setEmail(users.getEmail());
         usersDTO.setRole(users.getRole());
+        usersDTO.setPhone(users.getPhone());
+        usersDTO.setAddress(users.getAddress());
+
 
         return usersDTO;
     }
@@ -32,6 +35,8 @@ public class Utils {
         usersDTO.setUsername(users.getUsername());
         usersDTO.setEmail(users.getEmail());
         usersDTO.setRole(users.getRole());
+        usersDTO.setPhone(users.getPhone());
+        usersDTO.setAddress(users.getAddress());
 
         if (users.getBookings() != null) {
             usersDTO.setBookings(users.getBookings().stream()

@@ -174,10 +174,22 @@ public class UserServiceImpl implements UserServiceInterface {
                 users.setEmail(updateUserDTO.getUsername());
             }
 
-            // if want to update password then add password to userDTO
-            // if (updateUserDTO.getPassword() != null) {
-            //     user.setPassword(passwordEncoder.encode(updateUserDTO.getPassword()));
-            // }
+            if (updateUserDTO.getPhone() != null) {
+                users.setPhone(updateUserDTO.getPhone());
+            }
+
+            if (updateUserDTO.getAddress() != null) {
+                users.setAddress(updateUserDTO.getAddress());
+            }
+
+            if (updateUserDTO.getPassword() != null) {
+                users.setPassword(passwordEncoder.encode(updateUserDTO.getPassword()));
+            }
+
+
+             if (updateUserDTO.getPassword() != null) {
+                 users.setPassword(passwordEncoder.encode(updateUserDTO.getPassword()));
+             }
 
             Users updatedUser = usersRepository.save(users);
             UsersDTO responseUserDTO = Utils.mapUserEntityToUserDTO(updatedUser);
